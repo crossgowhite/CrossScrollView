@@ -1,0 +1,17 @@
+{
+  "name": "CrossScrollView",
+  "version": "0.0.1",
+  "summary": "Cross auto loop scroll view.",
+  "description": "A longer description of CrossScrollView in Markdown format.\n\n* Think: Why did you write this? What is the focus? What does it do?\n* CocoaPods will be using this to generate tags, and improve search results.\n* Try to keep it short, snappy and to the point.\n* Finally, don't worry about the indent, CocoaPods strips it!",
+  "homepage": "https://github.com/crossgowhite/CrossScrollView",
+  "license": "MIT (example)",
+  "authors": {
+    "chao bai": "crossgowhite@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/crossgowhite/CrossScrollView.git",
+    "commit": "d4c70bf23bc595b7627a209938915fb6bf284fd1"
+  },
+  "source_files": "*.{h,m}",
+  "requires_arc": true
+}

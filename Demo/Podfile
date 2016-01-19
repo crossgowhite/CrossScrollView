@@ -1,0 +1,2 @@
+platform :ios, '7.0'  
+pod 'CrossScrollView', :git => "https://github.com/crossgowhite/CrossScrollView.git"

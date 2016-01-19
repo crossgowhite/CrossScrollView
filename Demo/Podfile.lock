@@ -1,0 +1,19 @@
+PODS:
+  - CrossScrollView (0.0.1)
+
+DEPENDENCIES:
+  - CrossScrollView (from `https://github.com/crossgowhite/CrossScrollView.git`)
+
+EXTERNAL SOURCES:
+  CrossScrollView:
+    :git: https://github.com/crossgowhite/CrossScrollView.git
+
+CHECKOUT OPTIONS:
+  CrossScrollView:
+    :commit: 93164327bb49e4d89c346c54760d7655aa308d56
+    :git: https://github.com/crossgowhite/CrossScrollView.git
+
+SPEC CHECKSUMS:
+  CrossScrollView: 299de91d8b2e11857731b36cbdf257057962ba90
+
+COCOAPODS: 0.38.2
