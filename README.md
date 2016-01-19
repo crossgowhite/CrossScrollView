@@ -2,7 +2,7 @@
 One auto loop scroll view, used for the circulation of advertising.
 
 ## Demo
-![image](https://github.com/crossgowhite/CrossScrollView/screen.gif)
+![image](https://github.com/crossgowhite/CrossScrollView/blob/master/screen.gif)
 ## Install
 Use cocopods:
 
