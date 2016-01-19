@@ -27,5 +27,5 @@
 
 - (void)pauseTimer;
 
-- (void)startTimer;
+- (void)startTimerWithTimerInterval:(NSTimeInterval)timerInterval;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CrossScrollView.h"
+#import "NSTimer+CrossBlockSupport.h"
 
 @interface CrossScrollView ()
 {
@@ -20,6 +21,7 @@
 @property (nonatomic, retain) UITapGestureRecognizer *      tap;
 @property (nonatomic, retain) NSTimer *                     autoScrollTimer;
 @property (nonatomic, assign) NSInteger                     currentPage;
+@property (nonatomic, assign) NSTimeInterval                timerInterval;
 @end
 
 @implementation CrossScrollView
@@ -69,10 +71,14 @@
     }
 }
 
-- (void)startTimer
+- (void)startTimerWithTimerInterval:(NSTimeInterval)timerInterval
 {
     if (![_autoScrollTimer isValid]) {
-        _autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoSCroll) userInfo:nil repeats:YES];
+        __weak CrossScrollView * weakSelf = self;
+        _autoScrollTimer = [NSTimer crossScheduledTimerWithTimeInterval:timerInterval
+                                                                  block:^{
+                                                                      [weakSelf autoSCroll];}
+                                                                repeats:YES];
     }
 }
 
@@ -81,15 +87,14 @@
 {
     [self addSubview:self.scrollView];
     [self addSubview:self.pageController];
-    
     [self.scrollView addGestureRecognizer:self.tap];
-    
     [self loadData];
 }
 
 - (void)configTimerWithTimerInterval:(NSTimeInterval)timerInterval
 {
-    self.autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:timerInterval target:self selector:@selector(autoSCroll) userInfo:nil repeats:YES];
+    self.timerInterval = timerInterval;
+    [self startTimerWithTimerInterval:timerInterval];
 }
 
 -(void)loadData
@@ -137,7 +142,7 @@
     if (_autoScrollTimer) {
         [_autoScrollTimer invalidate];
         _autoScrollTimer = nil;
-        _autoScrollTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(autoSCroll) userInfo:nil repeats:YES];
+        [self startTimerWithTimerInterval:self.timerInterval];
     }
     
     float x = _scrollView.contentOffset.x;
@@ -191,7 +196,7 @@
 - (UIPageControl *)pageController
 {
     if (_pageController == nil) {
-        _pageController = [[UIPageControl alloc]initWithFrame:CGRectMake(0, _viewHeight -30, _viewWidth, 30)];
+        _pageController = [[UIPageControl alloc]initWithFrame:CGRectMake(0, _viewHeight-30, _viewWidth, 30)];
         _pageController.userInteractionEnabled = NO;
         _pageController.currentPageIndicatorTintColor = [UIColor blueColor];
         _pageController.pageIndicatorTintColor = [UIColor blackColor];
